@@ -1,0 +1,212 @@
+/* ---------------- Contact Section ---------------- */
+.contact {
+  background: var(--dark-color);
+  padding: 60px 0 100px 0;
+}
+
+.contact h2 {
+  font-size: 30px;
+  font-weight: 700;
+  margin-bottom: 30px;
+  color: var(--text-light);
+}
+
+/* Form inputs & textarea */
+.contact form input,
+.contact form textarea {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(252, 252, 252, 0.1);
+  border-radius: 20px;
+  color: var(--text-light);
+  margin: 0 0 8px 0;
+  padding: 18px 26px;
+  font-weight: 500;
+  font-size: 18px;
+  letter-spacing: 0.8px;
+  transition: 0.3s ease-in-out;
+}
+
+.contact form input:focus,
+.contact form textarea:focus {
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid var(--accent);
+  color: var(--text-light);
+}
+
+.contact form input::placeholder,
+.contact form textarea::placeholder {
+  font-size: 16px;
+  font-weight: 400;
+  color: var(--text-light-secondary);
+}
+
+.contact form input:focus::placeholder,
+.contact form textarea:focus::placeholder {
+  color: var(--text-light-secondary);
+  opacity: 0.8;
+}
+
+/* Form button */
+.contact form button {
+  font-weight: 700;
+  color: var(--text-light);
+  background-color: transparent;
+  border: 1px solid rgba(252, 252, 252, 0.1);
+  padding: 14px 48px;
+  font-size: 18px;
+  margin-top: 25px;
+  position: relative;
+  transition: 0.3s ease-in-out;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.contact form button span {
+  z-index: 1;
+  position: relative;
+}
+
+.contact form button:hover {
+  color: var(--bg-dark);
+}
+
+.contact form button::before {
+  content: "";
+  background: var(--accent);
+  border-radius: inherit;
+  width: 0;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 0;
+  transition: 0.3s ease-in-out;
+}
+
+.contact form button:hover::before {
+  width: 100%;
+}
+
+/* ---------------- Connect Section (SVG buttons) ---------------- */
+.contact .contact-links {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  height: 100%;
+}
+
+.connect-heading {
+  font-size: 30px;
+  font-weight: 700;
+  margin-bottom: 30px;
+  color: var(--text-light);
+}
+
+.social-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.social-btn {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 14px 20px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(252, 252, 252, 0.1);
+  text-decoration: none;
+  color: var(--text-light);
+  font-weight: 500;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.social-btn img {
+  width: 35px;
+  height: 35px;
+}
+
+.social-btn span {
+  font-size: 16px;
+}
+
+.social-btn::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0%;
+  height: 100%;
+  background: var(--accent);
+  border-radius: 12px;
+  z-index: -1;
+  transition: width 0.4s ease-in-out;
+}
+
+.social-btn:hover::before {
+  width: 100%;
+}
+
+.social-btn:hover {
+  color: var(--bg-dark);
+  transform: scale(1.03);
+}
+
+/* Optional: platform-specific effects */
+.social-btn.github img,
+.social-btn.linkedin img,
+.social-btn.email img {
+  filter: brightness(1.2);
+}
+
+/* ---------------- Responsive ---------------- */
+@media (max-width: 767px) {
+  .contact .contact-links {
+    width: 100%;
+    margin-bottom: 30px;
+  }
+
+  .connect-heading {
+    font-size: 24px;
+    margin-bottom: 15px;
+    text-align: center;
+  }
+
+  .social-buttons {
+    flex-direction: row;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .social-btn {
+    flex: 1 1 30%;
+    justify-content: center;
+    padding: 10px;
+    font-size: 14px;
+  }
+
+  .social-btn img {
+    width: 24px;
+    height: 24px;
+  }
+
+  .social-btn span {
+    font-size: 14px;
+  }
+}
+
+.contact form {
+  padding: 0 12px;
+}
+
+.contact form input,
+.contact form textarea {
+  width: 100%;
+  margin: 0 0 12px 0;
+  box-sizing: border-box;
+}

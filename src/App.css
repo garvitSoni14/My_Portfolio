@@ -1,0 +1,123 @@
+/************ Theme Variables (GitHub-inspired) ************/
+:root {
+  --color-bg: #0d1117;          /* GitHub dark background */
+  --color-bg-alt: #161b22;      /* Slightly lighter section bg */
+  --color-border: #30363d;      /* Subtle border gray */
+  --color-text: #c9d1d9;        /* Default text */
+  --color-text-light: #8b949e;  /* Muted text */
+  --color-accent: #58a6ff;      /* GitHub blue */
+  --color-accent-hover: #1f6feb;
+  --color-success: #3fb950;     /* Green (success, buttons) */
+  --color-danger: #f85149;      /* Red (errors) */
+  --color-warning: #d29922;     /* Yellow (warnings) */
+  --color-code-bg: #161b22;     /* Code block background */
+
+  --bg-dark: #0d1117;         /* GitHub dark background */
+  --bg-darker: #161b22;       /* Slightly lighter section background */
+  --text-primary: #c9d1d9;    /* Default text */
+  --text-secondary: #8b949e;  /* Muted text */
+  --accent: #58a6ff;          /* GitHub blue */
+  --border-subtle: rgba(255, 255, 255, 0.08);
+  --border-strong: rgba(255, 255, 255, 0.15);
+
+
+}
+
+/************ Custom Font ************/
+@font-face {
+  font-family: Centra;
+  src: url('./assets/font/CentraNo2-Bold.ttf');
+  font-weight: 700;
+}
+@font-face {
+  font-family: Centra;
+  src: url('./assets/font/CentraNo2-Medium.ttf');
+  font-weight: 500;
+}
+@font-face {
+  font-family: Centra;
+  src: url('./assets/font/CentraNo2-Book.ttf');
+  font-weight: 400;
+}
+
+/************ Reset & Defaults ************/
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 75px;
+}
+
+body {
+  font-weight: 400;
+  overflow-x: hidden;
+  position: relative;
+  font-family: 'Centra', sans-serif !important;
+  color: var(--color-text);
+  background-color: var(--color-bg);
+  background-image: linear-gradient(
+    to bottom right,
+    #0d1117 0%,
+    #161b22 50%,
+    #0d1117 100%
+  );
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+}
+
+/************ Typography ************/
+h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+  padding: 0;
+  line-height: normal;
+  color: var(--color-text);
+}
+
+p, a, li, button, ul {
+  margin: 0;
+  padding: 0;
+  line-height: normal;
+  text-decoration: none;
+  color: var(--color-text-light);
+}
+
+a:hover {
+  color: var(--color-accent);
+}
+
+img {
+  width: 100%;
+  height: auto;
+}
+
+button {
+  border: 0;
+  background-color: transparent;
+}
+
+input:focus, textarea:focus, select:focus {
+  outline: none;
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 2px rgba(88, 166, 255, 0.3);
+}
+
+/************ Layout Tweaks ************/
+@media (min-width: 1700px) {
+  main .container {
+    max-width: 100%;
+    padding: 0 150px;
+  }
+}
+
+/************ Alerts ************/
+p.success {
+  color: var(--color-success);
+}
+
+p.danger {
+  color: var(--color-danger);
+}
