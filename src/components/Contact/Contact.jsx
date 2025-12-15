@@ -4,7 +4,7 @@ import { Container, Row, Col } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import emailjs from '@emailjs/browser';
 import github from '../../assets/img/github.svg';
-import linkedIn from '../../assets/img/linkedIn.svg';
+import linkedIn from '../../assets/img/linkedin.svg';
 import leetcode from '../../assets/img/leetcode.svg';
 
 export const Contact = () => {
