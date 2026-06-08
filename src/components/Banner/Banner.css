@@ -1,139 +1,56 @@
-/* Banner Section */
 .banner {
-  margin-top: 100px; /* slightly greater than navbar height */
-  height: auto;     
-  background-position: top center;
-  background-size: cover;
-  background-repeat: no-repeat;
-  padding: 60px 0;
+  min-height: 100vh;
+  padding: 130px 0 48px;
 }
 
-@media(max-width: 768px) {
+.page-section {
+  min-height: calc(100vh - 178px);
+  animation: sectionFade 0.28s ease both;
+}
+
+@keyframes sectionFade {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes textSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes cardPop {
+  from {
+    opacity: 0;
+    transform: translateY(24px) scale(0.96);
+  }
+
+  70% {
+    opacity: 1;
+    transform: translateY(-2px) scale(1.012);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@media (max-width: 575px) {
   .banner {
-    min-height: auto;
-    padding-bottom: 100px;
-    text-align: center;
+    padding-top: 122px;
   }
-
-}
-
-/* Heading & Intro */
-.banner h1 {
-  font-size: 40px;
-  font-weight: 700;
-  letter-spacing: 0.8px;
-  line-height: 1.2;
-  margin-bottom: 20px;
-}
-
-.intro-text {
-  font-size: 24px;
-  font-weight: 400;
-  color: var(--text-light);
-}
-
-/* Animated rotating text */
-.txt-rotate {
-  display: inline-block;
-  min-height: 1.2em;
-}
-
-.txt-rotate > .wrap {
-  border-right: 0.08em solid #666;
-  white-space: nowrap;
-}
-@media(max-width: 768px) {
-  .banner h1 {
-    font-size: 30px;
-  }
-
-}
-/* Paragraph */
-.banner p {
-  margin-top: 20px;
-  color: var(--text-light-secondary);
-  font-size: 18px;
-  letter-spacing: 0.8px;
-  line-height: 1.5em;
-  width: 96%;
-}
-
-/* Buttons container */
-.banner-buttons {
-  display: flex;
-  gap: 15px;
-  margin-top: 10px;
-  flex-wrap: nowrap;
-  align-items: center;
-}
-
-/* Common Button Style */
-.banner-buttons button {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 12px 24px;     
-  font-size: 18px;        
-  font-weight: 700;
-  color: var(--text-light);             
-  background-color: transparent;
-  border: 1px solid var(--text-light);
-  border-radius: 14px;
-  position: relative;      
-  overflow: hidden;        
-  line-height: 1;          
-  cursor: pointer;
-  width:200px;
-  transition: color 0.4s ease-in-out, border-color 0.4s ease-in-out;
-}
-
-/* Hover sliding effect for all buttons */
-.banner-buttons button::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 0%;
-  height: 100%;
-  background-color: var(--accent);
-  z-index: -1;
-  border-radius: 14px;
-  transition: width 0.4s ease-in-out;
-}
-
-.banner-buttons button:hover::before,
-.banner-buttons button.active-click::before {
-  width: 100%;
-}
-
-.banner-buttons button:hover,
-.banner-buttons button:active-click {
-  color: var(--bg-dark);   /* text dark over accent slider */
-  border-color: var(--accent);
-}
-
-/* Icon adjustments for buttons with icons */
-.banner-buttons button svg {
-  margin-left: 10px;
-  transition: margin 0.3s ease-in-out, color 0.3s ease-in-out;
-}
-
-.banner-buttons button:hover svg,
-.banner-buttons button.active-click svg {
-  margin-left: 25px;
-  color: var(--bg-dark);
-}
-
-/* Header image animation */
-.banner img {
-  animation: updown 3s linear infinite;
-  margin-top: 40px;   
-  max-width: 90%;     
-  height: auto;
-}
-
-@keyframes updown {
-  0% { transform: translateY(-20px); }
-  50% { transform: translateY(20px); }
-  100% { transform: translateY(-20px); }
 }

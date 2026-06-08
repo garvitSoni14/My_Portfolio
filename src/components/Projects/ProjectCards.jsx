@@ -1,64 +1,31 @@
-import React, { useEffect, useRef } from "react";
-import { Col } from "react-bootstrap";
-
-export const ProjectCard = ({
-  title,
-  description,
-  imgUrl,
-  link,
-  demo,
-  tags = [],
-}) => {
-  const cardRef = useRef(null);
-
-  // Scroll animation
-  useEffect(() => {
-    const el = cardRef.current;
-    if (!el) return;
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) el.classList.add("animated");
-      },
-      { threshold: 0.4 }
-    );
-
-    observer.observe(el);
-    return () => observer.disconnect();
-  }, []);
-
+export const ProjectCard = ({ title, description, imgUrl, link, demo, tags = [] }) => {
   return (
-    <Col xs={12} md={6} lg={4}>
-      <div className="project-card" ref={cardRef}>
-        
-        {/* IMAGE */}
-        <div className="proj-imgbx">
-          <img src={imgUrl} alt={title} />
-        </div>
+    <article className="project-card">
+      <a className="project-image" href={demo} target="_blank" rel="noreferrer">
+        <img src={imgUrl} alt={title} />
+      </a>
 
-        {/* CONTENT */}
-        <div className="proj-content">
-          <h4>{title}</h4>
+      <div className="project-content">
+        <div>
+          <h3>{title}</h3>
           <p>{description}</p>
-
-          <div className="proj-tech">
-            {tags.map((tech, i) => (
-              <span key={i}>{tech}</span>
-            ))}
-          </div>
         </div>
 
-        {/* FOOTER */}
-        <div className="proj-footer">
+        <div className="project-tags">
+          {tags.map((tag) => (
+            <span key={tag}>{tag}</span>
+          ))}
+        </div>
+
+        <div className="project-links">
           <a href={demo} target="_blank" rel="noreferrer">
-            Live Demo
+            Live <i className="bi bi-arrow-up-right"></i>
           </a>
           <a href={link} target="_blank" rel="noreferrer">
-            GitHub
+            Code <i className="bi bi-github"></i>
           </a>
         </div>
-
       </div>
-    </Col>
+    </article>
   );
 };

@@ -1,212 +1,119 @@
-/* ---------------- Contact Section ---------------- */
-.contact {
-  background: var(--dark-color);
-  padding: 60px 0 100px 0;
+.contact-shell {
+  display: grid;
+  grid-template-columns: 0.85fr 1.15fr;
+  gap: 28px;
+  padding: 34px;
 }
 
-.contact h2 {
-  font-size: 30px;
-  font-weight: 700;
-  margin-bottom: 30px;
-  color: var(--text-light);
+.contact-copy h2 {
+  margin: 22px 0 14px;
+  color: var(--ink);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(34px, 4vw, 50px);
+  line-height: 1.05;
 }
 
-/* Form inputs & textarea */
-.contact form input,
-.contact form textarea {
-  width: 100%;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(252, 252, 252, 0.1);
-  border-radius: 20px;
-  color: var(--text-light);
-  margin: 0 0 8px 0;
-  padding: 18px 26px;
-  font-weight: 500;
-  font-size: 18px;
-  letter-spacing: 0.8px;
-  transition: 0.3s ease-in-out;
+.contact-copy p {
+  color: var(--muted);
+  font-size: 17px;
+  line-height: 1.7;
 }
 
-.contact form input:focus,
-.contact form textarea:focus {
-  background: rgba(255, 255, 255, 0.12);
-  border: 1px solid var(--accent);
-  color: var(--text-light);
+.contact-socials {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 26px;
 }
 
-.contact form input::placeholder,
-.contact form textarea::placeholder {
-  font-size: 16px;
-  font-weight: 400;
-  color: var(--text-light-secondary);
+.contact-socials a {
+  display: grid;
+  width: 48px;
+  height: 48px;
+  place-items: center;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  color: #788395;
+  background: rgba(255, 255, 255, 0.24);
+  backdrop-filter: blur(14px);
+  transition: 0.2s ease;
 }
 
-.contact form input:focus::placeholder,
-.contact form textarea:focus::placeholder {
-  color: var(--text-light-secondary);
-  opacity: 0.8;
-}
-
-/* Form button */
-.contact form button {
-  font-weight: 700;
-  color: var(--text-light);
-  background-color: transparent;
-  border: 1px solid rgba(252, 252, 252, 0.1);
-  padding: 14px 48px;
-  font-size: 18px;
-  margin-top: 25px;
-  position: relative;
-  transition: 0.3s ease-in-out;
-  border-radius: 10px;
-  overflow: hidden;
-}
-
-.contact form button span {
-  z-index: 1;
-  position: relative;
-}
-
-.contact form button:hover {
-  color: var(--bg-dark);
-}
-
-.contact form button::before {
-  content: "";
+.contact-socials a:hover {
+  color: #fff;
   background: var(--accent);
-  border-radius: inherit;
-  width: 0;
-  height: 100%;
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: 0;
-  transition: 0.3s ease-in-out;
-}
-
-.contact form button:hover::before {
-  width: 100%;
-}
-
-/* ---------------- Connect Section (SVG buttons) ---------------- */
-.contact .contact-links {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  height: 100%;
-}
-
-.connect-heading {
-  font-size: 30px;
-  font-weight: 700;
-  margin-bottom: 30px;
-  color: var(--text-light);
-}
-
-.social-buttons {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-
-.social-btn {
-  display: flex;
-  align-items: center;
-  gap: 15px;
-  padding: 14px 20px;
-  border-radius: 12px;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(252, 252, 252, 0.1);
-  text-decoration: none;
-  color: var(--text-light);
-  font-weight: 500;
-  transition: all 0.3s ease;
-  position: relative;
-  overflow: hidden;
-}
-
-.social-btn img {
-  width: 35px;
-  height: 35px;
-}
-
-.social-btn span {
-  font-size: 16px;
-}
-
-.social-btn::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 0%;
-  height: 100%;
-  background: var(--accent);
-  border-radius: 12px;
-  z-index: -1;
-  transition: width 0.4s ease-in-out;
-}
-
-.social-btn:hover::before {
-  width: 100%;
-}
-
-.social-btn:hover {
-  color: var(--bg-dark);
-  transform: scale(1.03);
-}
-
-/* Optional: platform-specific effects */
-.social-btn.github img,
-.social-btn.linkedin img,
-.social-btn.email img {
-  filter: brightness(1.2);
-}
-
-/* ---------------- Responsive ---------------- */
-@media (max-width: 767px) {
-  .contact .contact-links {
-    width: 100%;
-    margin-bottom: 30px;
-  }
-
-  .connect-heading {
-    font-size: 24px;
-    margin-bottom: 15px;
-    text-align: center;
-  }
-
-  .social-buttons {
-    flex-direction: row;
-    justify-content: space-around;
-    flex-wrap: wrap;
-    gap: 10px;
-  }
-
-  .social-btn {
-    flex: 1 1 30%;
-    justify-content: center;
-    padding: 10px;
-    font-size: 14px;
-  }
-
-  .social-btn img {
-    width: 24px;
-    height: 24px;
-  }
-
-  .social-btn span {
-    font-size: 14px;
-  }
+  transform: translateY(-2px);
 }
 
 .contact form {
-  padding: 0 12px;
+  display: grid;
+  gap: 12px;
 }
 
-.contact form input,
-.contact form textarea {
+.form-row {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
+}
+
+.contact input,
+.contact textarea {
   width: 100%;
-  margin: 0 0 12px 0;
-  box-sizing: border-box;
+  border: 1px solid rgba(16, 24, 40, 0.09);
+  border-radius: 18px;
+  outline: 0;
+  padding: 15px 16px;
+  color: var(--ink);
+  background: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(14px);
+  transition: 0.2s ease;
+}
+
+.contact textarea {
+  resize: vertical;
+}
+
+.contact input:focus,
+.contact textarea:focus {
+  border-color: rgba(15, 23, 42, 0.35);
+  background: rgba(255, 255, 255, 0.52);
+  box-shadow: 0 0 0 4px rgba(15, 23, 42, 0.06);
+}
+
+.contact button {
+  min-height: 54px;
+  border-radius: 18px;
+  color: #fff;
+  font-weight: 700;
+  background: var(--accent);
+}
+
+.contact p.success,
+.contact p.danger {
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.contact p.success {
+  color: #12805c;
+}
+
+.contact p.danger {
+  color: #b42318;
+}
+
+@media (max-width: 991px) {
+  .contact-shell {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 575px) {
+  .contact-shell {
+    padding: 22px;
+  }
+
+  .form-row {
+    grid-template-columns: 1fr;
+  }
 }

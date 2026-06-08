@@ -1,0 +1,119 @@
+.skills-page-layout {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 22px;
+  margin-top: 8px;
+}
+
+.skill-category-card {
+  min-height: 268px;
+  padding: 30px;
+  opacity: 0;
+  transform: translateY(24px) scale(0.96);
+  animation: cardPop 0.56s var(--pop-delay, 0s) cubic-bezier(0.18, 0.9, 0.28, 1.2) both;
+}
+
+.skill-category-heading {
+  display: grid;
+  grid-template-columns: 48px 1fr;
+  gap: 18px;
+  align-items: start;
+}
+
+.skill-category-heading > i {
+  display: grid;
+  width: 48px;
+  height: 58px;
+  place-items: center;
+  border-radius: 18px;
+  color: #40533a;
+  font-size: 24px;
+  background: rgba(237, 244, 233, 0.38);
+}
+
+.skill-category-heading h3 {
+  color: var(--ink);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(27px, 2.6vw, 34px);
+  line-height: 1.05;
+  animation: textSlideUp 0.52s calc(var(--pop-delay, 0s) + 0.08s) cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+.skill-category-heading p {
+  margin-top: 10px;
+  color: #40533a;
+  font-size: 18px;
+  line-height: 1.45;
+  animation: textSlideUp 0.52s calc(var(--pop-delay, 0s) + 0.14s) cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+.skill-chip-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(148px, 1fr));
+  gap: 12px;
+  margin-top: 28px;
+}
+
+.skill-chip-list span {
+  display: inline-flex;
+  align-items: center;
+  gap: 11px;
+  min-height: 50px;
+  padding: 0 15px;
+  border: 1px solid rgba(26, 37, 23, 0.14);
+  border-radius: 14px;
+  color: #40533a;
+  font-size: 16px;
+  font-weight: 700;
+  background: rgba(237, 244, 233, 0.42);
+  box-shadow: inset 0 1px 0 rgba(237, 244, 233, 0.48);
+  animation: textSlideUp 0.48s calc(var(--pop-delay, 0s) + 0.18s) cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+.skill-chip-list img,
+.skill-chip-list i {
+  flex: 0 0 auto;
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+}
+
+.skill-chip-list img {
+  filter: grayscale(1) brightness(0) saturate(1) opacity(0.78);
+}
+
+.skill-chip-list i {
+  display: grid;
+  place-items: center;
+  color: #1a2517;
+  font-size: 21px;
+  opacity: 0.78;
+}
+
+@media (max-width: 991px) {
+  .skills-page-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 575px) {
+  .skill-category-card {
+    min-height: auto;
+    padding: 24px;
+  }
+
+  .skill-category-heading {
+    grid-template-columns: 42px 1fr;
+    gap: 14px;
+  }
+
+  .skill-category-heading > i {
+    width: 42px;
+    height: 50px;
+    font-size: 21px;
+  }
+
+  .skill-chip-list {
+    grid-template-columns: 1fr;
+  }
+}

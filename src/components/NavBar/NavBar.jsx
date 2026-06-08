@@ -1,121 +1,86 @@
-import { Navbar, Container, Nav } from "react-bootstrap";
-import { useState, useEffect } from "react";
-import logo from "../../assets/img/loogoo.svg";
-import linkedIn from "../../assets/img/linkedin.svg";
-import github from "../../assets/img/github.svg";
-import resume from "../../assets/img/resume.svg";
+import { useEffect, useState } from "react";
+import { Container, Nav, Navbar } from "react-bootstrap";
+import { resumeUrl } from "../../config/links";
 import "./NavBar.css";
 import "bootstrap/dist/css/bootstrap.min.css";
+
+const links = [
+  { id: "home", label: "Home" },
+  { id: "skills", label: "Skills" },
+  { id: "projects", label: "Projects" },
+  { id: "experiences", label: "Journey" },
+  { id: "achievements", label: "Honors" },
+  { id: "contact", label: "Contact" },
+];
 
 export const NavBar = () => {
   const [activeLink, setActiveLink] = useState("home");
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => {
-      // Navbar transparency
-      setScrolled(window.scrollY > 50);
-      // Section tracking
-      const sections = [
-        "home",
-        "skills",
-        "projects",
-        "experiences",
-        "achievements",
-        "contact",
-      ];
-      let currentSection = "home";
-      sections.forEach((id) => {
-        const section = document.getElementById(id);
-        if (section) {
-          const top = section.offsetTop - 80; // offset for navbar height
-          const bottom = top + section.offsetHeight;
-          if (window.scrollY >= top && window.scrollY < bottom) {
-            currentSection = id;
-          }
-        }
-      });
-      setActiveLink(currentSection);
+    const getActiveIdFromHash = () => {
+      const hash = window.location.hash.replace("#", "");
+      return links.some((link) => link.id === hash) ? hash : "home";
     };
 
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 30);
+    };
+
+    const syncActiveLink = () => {
+      setActiveLink(getActiveIdFromHash());
+    };
+
+    const handlePortfolioNavigate = (event) => {
+      const id = event.detail?.id;
+      setActiveLink(links.some((link) => link.id === id) ? id : getActiveIdFromHash());
+    };
+
+    handleScroll();
+    syncActiveLink();
     window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    window.addEventListener("hashchange", syncActiveLink);
+    window.addEventListener("portfolio:navigate", handlePortfolioNavigate);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("hashchange", syncActiveLink);
+      window.removeEventListener("portfolio:navigate", handlePortfolioNavigate);
+    };
   }, []);
 
-  const onUpdateActiveLink = (value) => {
-    setActiveLink(value);
+  const navigateTo = (id) => {
+    setActiveLink(id);
+    window.location.hash = id;
+    window.dispatchEvent(new CustomEvent("portfolio:navigate", { detail: { id } }));
   };
-
-  const scrollToSection = (id) => {
-  const section = document.getElementById(id);
-  if (!section) return;
-
-  const yOffset = 80; // navbar height
-  const y =
-    section.getBoundingClientRect().top + window.pageYOffset - yOffset;
-
-  window.scrollTo({
-    top: y,
-    behavior: "smooth",
-  });
-
-  setActiveLink(id);
-};
 
   return (
     <Navbar expand="lg" className={scrolled ? "scrolled" : ""}>
       <Container>
-        <Navbar.Brand href="#home">
-          <img src={logo} alt="Logo" />
-        </Navbar.Brand>
-
-        {/* Nav Links */}
-        <Nav className="ms-auto nav-links">
-          {["home", "skills", "projects", "experiences", "achievements"].map(
-            (link) => (
+        <Navbar.Brand href="#home">GS</Navbar.Brand>
+        <Navbar.Toggle aria-controls="portfolio-nav" />
+        <Navbar.Collapse id="portfolio-nav">
+          <Nav className="mx-auto nav-links">
+            {links.map((link) => (
               <Nav.Link
-                key={link}
-                href={`#${link}`}
-                className={
-                  activeLink === link ? "active navbar-link" : "navbar-link"
-                }
-                onClick={() => onUpdateActiveLink(link)}
+                key={link.id}
+                href={`#${link.id}`}
+                active={activeLink === link.id}
+                className="navbar-link"
+                onClick={(event) => {
+                  event.preventDefault();
+                  navigateTo(link.id);
+                }}
               >
-                {link.charAt(0).toUpperCase() + link.slice(1)}
+                {link.label}
               </Nav.Link>
-            )
-          )}
-        </Nav>
-
-        {/* Social + Button */}
-        <span className="navbar-text">
-          <div className="social-icon">
-            <a
-              href="https://github.com/garvitSoni14"
-              target="_blank"
-              rel="noreferrer"
-            >
-              <img src={github} alt="GitHub" />
-            </a>
-            <a
-              href="https://www.linkedin.com/in/garvitsoni04"
-              target="_blank"
-              rel="noreferrer"
-            >
-              <img src={linkedIn} alt="LinkedIn" />
-            </a>
-            <a
-              href="/GarvitSoni_Resume.pdf"
-              target="_blank"
-              className="resume-icon"
-            >
-              <img src={resume} alt="Resume" />
-            </a>
-          </div>
-          <button className="vvd" onClick={() => scrollToSection("connect")}>
-            <span>Let's Connect</span>
-          </button>
-        </span>
+            ))}
+          </Nav>
+          <a className="nav-cta" href={resumeUrl} target="_blank" rel="noreferrer">
+            Resume
+          </a>
+        </Navbar.Collapse>
       </Container>
     </Navbar>
   );
